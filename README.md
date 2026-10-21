@@ -10,6 +10,7 @@
 | :--- | :--- | :--- |
 | 🌐 **Frontend Application** | React 18 + Tailwind SPA deployed on Render | [https://hospital-management-system-1-g2e3.onrender.com](https://hospital-management-system-1-g2e3.onrender.com) |
 | 📡 **Backend REST API** | Express.js + Node.js API deployed on Render | [https://hospital-management-system-uwn3.onrender.com](https://hospital-management-system-uwn3.onrender.com) |
+| 📦 **Source Code Archive** | Google Drive downloadable ZIP archive | [Download ZIP](https://drive.google.com/file/d/1Flrgic64IXIVgE92JC9iYHgAsPxqSpk4/view?usp=sharing) |
 | 🩺 **API Health Check** | Live uptime and health verification endpoint | [https://hospital-management-system-uwn3.onrender.com/api/health](https://hospital-management-system-uwn3.onrender.com/api/health) |
 | 🐙 **GitHub Repository** | Source code repository with version control | [https://github.com/geekykalpesh/hospital-management-system](https://github.com/geekykalpesh/hospital-management-system) |
 | 🗄️ **Database Console** | Neon Serverless PostgreSQL Cloud Database | [https://console.neon.tech](https://console.neon.tech) |
