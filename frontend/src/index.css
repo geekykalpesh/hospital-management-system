@@ -1,0 +1,57 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply font-sans antialiased text-slate-800 bg-slate-50 selection:bg-brand-500 selection:text-white;
+  }
+}
+
+/* Custom Healthcare Shimmer Wave Skeleton */
+.shimmer-wave {
+  background: linear-gradient(
+    90deg,
+    #F1F5F9 0%,
+    #E2E8F0 45%,
+    #F1F5F9 90%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.6s infinite ease-in-out;
+}
+
+/* Micro-interaction Utilities */
+.btn-interactive {
+  @apply transition-all duration-150 active:scale-[0.97] focus:outline-none select-none cursor-pointer;
+}
+
+.hover-lift {
+  @apply transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-md;
+}
+
+.card-interactive {
+  @apply transition-all duration-200 hover:border-teal-300/80 hover:shadow-md hover:shadow-teal-900/5;
+}
+
+.input-focus {
+  @apply transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-teal-500/20 focus:border-teal-500 focus:bg-white;
+}
+
+/* Clean Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F8FAFC;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94A3B8;
+}
