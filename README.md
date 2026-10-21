@@ -1,221 +1,183 @@
-# 🏥 AuraCare - Hospital Management System (HMS)
+# 🏥 AuraCare - Enterprise Hospital Management System (HMS)
 
-> An enterprise-grade, full-stack Hospital Management System developed for technical coding round evaluation. Features three dedicated role-based portals (**Patient**, **Doctor**, and **Hospital Administrator**) with JWT authentication, relational PostgreSQL persistence, and healthcare-grade UI/UX with smooth shimmer wave skeletons and micro-interactions.
+> A full-stack Hospital Management Platform built for technical coding round evaluation. Features three dedicated, role-protected portals (**Patient**, **Doctor**, and **Hospital Administrator**) with stateless JWT authentication, relational PostgreSQL persistence on Neon DB, healthcare-grade UI/UX, wave shimmer skeleton loaders, and tactile micro-interactions.
 
 ---
 
-## 🚀 Live Demo Test Credentials
+## 🔗 Live Application & Infrastructure Links
 
-You can use the built-in 1-click quick demo switcher on the `/login` screen or manually sign in with these pre-seeded accounts:
+| Service | Description | Live URL |
+| :--- | :--- | :--- |
+| 🌐 **Frontend Application** | React 18 + Tailwind SPA deployed on Render | [https://hospital-management-system-1-g2e3.onrender.com](https://hospital-management-system-1-g2e3.onrender.com) |
+| 📡 **Backend REST API** | Express.js + Node.js API deployed on Render | [https://hospital-management-system-uwn3.onrender.com](https://hospital-management-system-uwn3.onrender.com) |
+| 🩺 **API Health Check** | Live uptime and health verification endpoint | [https://hospital-management-system-uwn3.onrender.com/api/health](https://hospital-management-system-uwn3.onrender.com/api/health) |
+| 🐙 **GitHub Repository** | Source code repository with version control | [https://github.com/geekykalpesh/hospital-management-system](https://github.com/geekykalpesh/hospital-management-system) |
+| 🗄️ **Database Console** | Neon Serverless PostgreSQL Cloud Database | [https://console.neon.tech](https://console.neon.tech) |
 
-| Role | Email | Password | Assigned Department / Specialization |
+---
+
+## 🔑 Authentication & Live Demo Credentials
+
+Use the **1-click evaluation demo quick-fill switcher** on the [`/login`](https://hospital-management-system-1-g2e3.onrender.com/login) screen, or sign in manually using any of the verified credentials below:
+
+### 👑 Lead Administrator Account
+- **Email**: `geekykalpesh@gmail.com`
+- **Password**: `Kalpesh1234@`
+- **Role**: `admin` (Full Master Operations & Audit Access)
+
+### 👥 Pre-Configured Specialist & Patient Accounts
+
+| Role | Email Address | Password | Profile Details & Pre-seeded State |
 | :--- | :--- | :--- | :--- |
-| **👑 Admin** | `admin@hospital.com` | `Admin@123` | Master Administrative Access & Audit Ledger |
-| **🩺 Doctor** | `doctor.sarah@hospital.com` | `Doctor@123` | Cardiology (Interventional Cardiology) |
-| **🩺 Doctor** | `doctor.james@hospital.com` | `Doctor@123` | Neurology (Cognitive Neurology) |
-| **🩺 Doctor** | `doctor.elena@hospital.com` | `Doctor@123` | Pediatrics (Pediatric & Neonatal Care) |
-| **🩺 Doctor** | `doctor.marcus@hospital.com` | `Doctor@123` | Orthopedics (Joint & Sports Surgery) |
-| **👤 Patient** | `john.doe@example.com` | `Patient@123` | Blood Group O+, Mild Asthma (Pre-seeded with upcoming & past bookings) |
-| **👤 Patient** | `emily.smith@example.com` | `Patient@123` | Blood Group A+ (Pre-seeded with upcoming & cancelled bookings) |
+| **👑 System Admin** | `admin@hospital.com` | `Admin@123` | Hospital Master Command, Ledger & KPIs |
+| **🩺 Doctor (Cardiology)** | `doctor.sarah@hospital.com` | `Doctor@123` | Dr. Sarah Jenkins, MD (Interventional Cardiology, Room 302-A) |
+| **🩺 Doctor (Neurology)** | `doctor.james@hospital.com` | `Doctor@123` | Dr. James Wilson, MD (Cognitive Neurology, Room 405-B) |
+| **🩺 Doctor (Pediatrics)** | `doctor.elena@hospital.com` | `Doctor@123` | Dr. Elena Rostova, MD (Pediatrics & Neonatal, Room 104-C) |
+| **🩺 Doctor (Orthopedics)** | `doctor.marcus@hospital.com` | `Doctor@123` | Dr. Marcus Sterling, MD (Joint & Sports Medicine, Room 210-D) |
+| **👤 Patient 1** | `john.doe@example.com` | `Patient@123` | Pre-seeded with **Upcoming Confirmed** & **Past Completed** visits with Prescriptions |
+| **👤 Patient 2** | `emily.smith@example.com` | `Patient@123` | Pre-seeded with **Upcoming Pending** & **Past Cancelled** bookings |
 
-*Note: New patients can also register fresh accounts with their complete medical profile directly via **Patient Registration** (`/register`).*
-
----
-
-## 🛠️ Technology Stack
-
-- **Frontend**: React 18, Vite, Tailwind CSS (Custom Medical Palette), Lucide Icons, Axios.
-- **Backend**: Node.js 22, Express.js (ES Modules), JWT (`jsonwebtoken`), Password Hashing (`bcryptjs`), Request Logger (`morgan`).
-- **Database**: PostgreSQL (Cloud Neon / Local pgAdmin compatible), `pg` connection pool with SSL.
-- **Authentication**: Stateless Bearer JWT with Role-Based Route Guards (`admin`, `doctor`, `patient`).
+> 💡 **Self-Registration**: New patients can also register a fresh account with DOB, blood group, emergency contact, and medical history directly via [`/register`](https://hospital-management-system-1-g2e3.onrender.com/register).
 
 ---
 
-## 📁 Project Architecture
+## 🛠️ Complete Technology Stack
+
+### Frontend Architecture
+- **Framework**: React.js 18 (bootstrapped with Vite)
+- **Styling**: Tailwind CSS (Custom healthcare palette: Deep Slate `#0F172A`, Medical Teal `#0D9488`, Cyan `#0891B2` — strictly avoiding raw/neon RGB)
+- **Routing**: React Router v6 with Role-Guarded Protected Routes (`ProtectedRoute.jsx`)
+- **State & Context**: Context API for global `AuthContext` (JWT session management) and `ToastContext` (micro-interaction notifications)
+- **HTTP Client**: Axios with request/response interceptors (auto JWT attachment & global 401 session expiration handling)
+- **Icons**: Lucide React
+- **Animations**: Custom `@keyframes shimmer`, `popIn`, `slideInRight`, and `shake`
+
+### Backend Architecture
+- **Runtime**: Node.js v22 (Modern ES Modules: `"type": "module"`)
+- **Server Framework**: Express.js with dual-route mounting (`/api/...` and `/...`)
+- **Authentication**: Stateless JSON Web Tokens (`jsonwebtoken`) with `Bearer` Authorization headers
+- **Password Security**: Cryptographic hashing via `bcryptjs` (10 salt rounds)
+- **CORS**: Cross-Origin Resource Sharing configured for dev and production Render URLs
+- **Networking**: Custom IPv6/IPv4 dual-stack DNS resolution (`--dns-result-order=verbatim`) optimized for AWS & Neon cloud endpoints
+
+### Database & Persistence
+- **Engine**: PostgreSQL hosted on [Neon Serverless Cloud](https://console.neon.tech)
+- **Client**: `pg` (node-postgres) with connection pooling, SSL encryption (`rejectUnauthorized: false`), and parameterized SQL queries to prevent SQL injections
+- **Relational Schema**: 6 normalized entities (`users`, `departments`, `doctors`, `patients`, `appointments`, `prescriptions`) with foreign key constraints, cascading deletes, and performance indexes
+
+---
+
+## 🌟 Comprehensive Feature Matrix
 
 ```
-hospital-management-system/
-├── backend/
-│   ├── src/
-│   │   ├── config/
-│   │   │   ├── bootstrap.js       # Verbatim dual-stack DNS resolution
-│   │   │   └── db.js              # PostgreSQL Pool with custom DNS lookup & SSL
-│   │   ├── controllers/
-│   │   │   ├── authController.js        # Register, Login, /me profile
-│   │   │   ├── appointmentController.js # Slot booking, patient history, doctor queue, prescriptions
-│   │   │   ├── doctorController.js      # Doctor directory, 30-min slot calculator, CRUD
-│   │   │   ├── departmentController.js  # Medical departments
-│   │   │   └── adminController.js       # Hospital KPIs, revenue calc, patient directory
-│   │   ├── middleware/
-│   │   │   ├── authMiddleware.js        # authenticateToken & authorizeRoles
-│   │   │   └── errorMiddleware.js       # 404 & centralized error handler
-│   │   ├── routes/                      # Modular Express routers
-│   │   ├── db/
-│   │   │   ├── schema.sql               # PostgreSQL DDL table definitions
-│   │   │   └── initDb.js                # Auto-migration & seed data generator
-│   │   └── server.js                    # Server entry point
-│   ├── .env                             # Environment configuration (ignored in git)
-│   ├── .env.example                     # Environment template
-│   └── package.json
-│
-├── frontend/
-│   ├── src/
-│   │   ├── api/axios.js                 # Axios instance with JWT interceptor
-│   │   ├── context/
-│   │   │   ├── AuthContext.jsx          # User authentication state (login, register, logout)
-│   │   │   └── ToastContext.jsx         # Micro-interaction Toast notification provider
-│   │   ├── components/
-│   │   │   ├── common/Shimmer.jsx       # Custom shimmer wave loading skeletons
-│   │   │   ├── common/StatusBadge.jsx   # Semantic medical status pills with live ping
-│   │   │   ├── common/Modal.jsx         # Accessible backdrop modal dialogs
-│   │   │   ├── common/CopyPill.jsx      # Micro-interaction copy-to-clipboard button
-│   │   │   ├── common/Navbar.jsx        # Public and user navigation
-│   │   │   └── layout/DashboardLayout.jsx# Role-tailored responsive sidebar layout
-│   │   ├── pages/
-│   │   │   ├── LandingPage.jsx          # Public hospital landing portal
-│   │   │   ├── auth/Login.jsx           # Sign in with 1-click test selector & error shake
-│   │   │   ├── auth/Register.jsx        # Patient self-registration
-│   │   │   ├── patient/                 # Patient Dashboard, Book Slot, History, Prescriptions
-│   │   │   ├── doctor/                  # Doctor Queue, Consult & Prescribe, Schedule
-│   │   │   └── admin/                   # Master Ledger, Analytics, Doctor & Patient CRUD
-│   │   ├── routes/ProtectedRoute.jsx    # Role-based route guards
-│   │   ├── App.jsx                      # Client router setup
-│   │   ├── main.jsx
-│   │   └── index.css                    # Tailwind + @keyframes shimmer & micro-interactions
-│   ├── tailwind.config.js
-│   └── package.json
-├── .gitignore                           # Git ignore rules
-└── README.md
+┌────────────────────────────────────────────────────────────────────────┐
+│                      AuraCare HMS Feature Matrix                       │
+├──────────────────────────┬──────────────┬──────────────┬───────────────┤
+│ Feature                  │ Patient      │ Doctor       │ Admin         │
+├──────────────────────────┼──────────────┼──────────────┼───────────────┤
+│ JWT Register & Login     │      ✅      │      ✅      │      ✅       │
+│ Interactive Slot Wizard  │      ✅      │      ❌      │      ✅       │
+│ View Upcoming Bookings   │      ✅      │      ✅      │      ✅       │
+│ View Past History        │      ✅      │      ✅      │      ✅       │
+│ Digital Prescriptions    │ View & Print │ Create/Edit  │     Audit     │
+│ Cancel Bookings          │      ✅      │      ✅      │      ✅       │
+│ Daily Outpatient Queue   │      ❌      │      ✅      │      ❌       │
+│ Doctor Practice Schedule │      ❌      │      ✅      │     Audit     │
+│ Master Hospital Ledger   │      ❌      │      ❌      │      ✅       │
+│ Hospital KPIs & Revenue  │      ❌      │      ❌      │      ✅       │
+│ Doctor Management (CRUD) │      ❌      │      ❌      │      ✅       │
+│ Patient Directory Audit  │      ❌      │ Patient Hist │  All Patients │
+└──────────────────────────┴──────────────┴──────────────┴───────────────┘
 ```
 
 ---
 
-## 🌟 Key Functionality Walkthrough
+## 🎨 UI/UX Excellence, Shimmer Effect & Micro-Interactions
 
-### 1. 👤 Patient Panel
-- **Interactive 4-Step Booking Wizard**:
-  1. Department & Doctor selection (view experience, fee, qualification, rating).
-  2. Live date picker with dynamic **30-minute time-slot chips** (booked slots automatically disabled).
-  3. Symptoms and visit reason description.
-  4. Real-time booking summary & instant confirmation. Double-booking prevention enforced at DB query level.
-- **My Appointments Ledger**: Tabbed view of **Upcoming Visits** vs. **Past Bookings & History**.
-- **Digital Prescriptions**: View and print doctor diagnoses, prescribed medications tables (drug name, dosage, duration), clinical instructions, and follow-up schedules.
-- **Cancellation**: One-click cancellation with reason recording.
+### 1. Zero-Flicker Wave Shimmer Skeleton Loaders
+- Built with custom `@keyframes shimmer` moving gradients.
+- Replaces raw spinners with structured skeleton layouts:
+  - `<ShimmerStats count={4} />`: Analytics KPI skeleton cards
+  - `<ShimmerTable rows={6} columns={6} />`: Table row skeletons
+  - `<ShimmerAppointmentCard count={3} />`: Structured appointment card skeletons
+  - `<ShimmerCard />`: Profile and department card skeletons
 
-### 2. 🩺 Doctor Panel
-- **Outpatient Daily Queue**: Real-time counter of today's schedule and pending consultations.
-- **Consultation & Prescription Modal**:
-  - Record clinical medical diagnosis.
-  - Dynamic medicine prescription builder (add/remove drug rows with dosage and duration).
-  - Clinical instructions and follow-up appointment date.
-  - Submitting marks the appointment as completed and archives the prescription.
-- **Schedule & Availability Manager**: Configure active clinic days, shift hours, consultation tariffs, and toggle online availability.
-
-### 3. 👑 Admin Panel
-- **Master Appointments Ledger (`/admin/appointments`)**: Full hospital audit ledger showing all bookings across all doctors and departments with live search and multi-filtering (Status, Department, Doctor, Date Range).
-- **Executive KPIs**: Real-time counters for Total Doctors, Total Patients, Total Bookings, and Estimated Consultation Revenue.
-- **Doctor Directory Management (CRUD)**: Register specialist physicians with credentials and clinic rooms; remove doctor accounts.
-- **Patient Directory**: Audit patient demographics, blood groups, emergency contacts, and booking visit frequencies.
+### 2. Tactile Micro-Interactions
+- **Interactive Toasts (`useToast`)**: Floating top-right notifications for booking confirmations, doctor prescriptions, cancellations, and status updates.
+- **Copy-to-Clipboard Pills (`<CopyPill />`)**: Clickable booking IDs, phone numbers, and emails with instantaneous checkmark bounce feedback.
+- **Live Activity Radar Ping**: Pulsing beacon dot on pending appointments for real-time status awareness.
+- **Smooth Elevations & Scale**: Buttons feature tactile active press effects (`active:scale-[0.97]`), and cards smoothly elevate on hover (`hover:-translate-y-1 hover:shadow-md`).
+- **Input Focus Glow & Error Shake**: Smooth clinical teal ring focus glows (`focus:ring-2 focus:ring-teal-500/20`) and validation shake animations (`animate-shake`).
 
 ---
 
-## ⚡ Local Development Setup
+## 💻 Local Setup Instructions
 
-### 1. Backend Setup
+### Prerequisites
+- Node.js (v18 or higher)
+- Git
+
+### 1. Clone the Repository
+```bash
+git clone https://github.com/geekykalpesh/hospital-management-system.git
+cd hospital-management-system
+```
+
+### 2. Backend Setup
 ```bash
 cd backend
 npm install
-# Run migration & populate demo seed data
+
+# Initialize PostgreSQL Schema & Seed Demo Data
 npm run db:init
-# Start development server (http://localhost:5000)
+
+# Start Backend Server (Runs on http://localhost:5000)
 npm run dev
 ```
 
-### 2. Frontend Setup
+### 3. Frontend Setup
 ```bash
-cd frontend
+cd ../frontend
 npm install
-# Start Vite development server (http://localhost:5173)
+
+# Start Vite Development Server (Runs on http://localhost:5173)
 npm run dev
 ```
 
 ---
 
-## 🌐 Deploying Frontend & Backend on Render (Step-by-Step Guide)
+## 🚀 Render Cloud Deployment Reference
 
-You can easily deploy both services on **Render** (free tier compatible).
+Both services are live on Render:
 
-### Step 1: Push Your Code to GitHub
-Ensure all your files and commits are pushed to your GitHub repository:
-```bash
-git add .
-git commit -m "feat: complete hospital management system with admin, doctor, patient panels"
-git branch -M main
-git remote add origin https://github.com/geekykalpesh/hospital-management-system.git
-git push -u origin main
-```
+### Backend Service Settings (Render Web Service)
+- **Repository**: `geekykalpesh/hospital-management-system`
+- **Root Directory**: `backend`
+- **Build Command**: `npm install`
+- **Start Command**: `npm run start`
+- **Environment Variables**:
+  - `NODE_ENV`: `production`
+  - `PORT`: `5000`
+  - `DATABASE_URL`: `postgresql://neondb_owner:npg_0bkJoms4RIWY@ep-blue-moon-b5qxwgaf-pooler.c-7.us-east-2.aws.neon.tech/neondb?sslmode=require`
+  - `JWT_SECRET`: `hospital_mgmt_super_secret_jwt_key_2026_secure`
+  - `JWT_EXPIRES_IN`: `7d`
+  - `FRONTEND_URL`: `https://hospital-management-system-1-g2e3.onrender.com`
 
----
-
-### Step 2: Deploy the Backend (Render Web Service)
-
-1. Log into your [Render Dashboard](https://dashboard.render.com).
-2. Click **New +** and select **Web Service**.
-3. Choose **Build and deploy from a Git repository** and connect your repository: `geekykalpesh/hospital-management-system`.
-4. Configure the Web Service settings:
-   - **Name**: `aura-care-backend` (or your preferred name)
-   - **Region**: Oregon (US West) or Ohio (US East)
-   - **Branch**: `main`
-   - **Root Directory**: `backend` *(Important! Set this to `backend`)*
-   - **Runtime**: `Node`
-   - **Build Command**: `npm install`
-   - **Start Command**: `npm run start`
-   - **Instance Type**: `Free`
-5. Click **Advanced** and add the following **Environment Variables**:
-   | Key | Value | Notes |
-   | :--- | :--- | :--- |
-   | `NODE_ENV` | `production` | Production mode |
-   | `PORT` | `5000` | Render port (or standard 10000) |
-   | `DATABASE_URL` | `postgresql://neondb_owner:npg_0bkJoms4RIWY@ep-blue-moon-b5qxwgaf-pooler.c-7.us-east-2.aws.neon.tech/neondb?sslmode=require` | Your Neon PostgreSQL connection string |
-   | `JWT_SECRET` | `hospital_mgmt_super_secret_jwt_key_2026_secure` | Secure JWT secret |
-   | `JWT_EXPIRES_IN` | `7d` | Token lifetime |
-   | `FRONTEND_URL` | `https://your-frontend-subdomain.onrender.com` | (Update after deploying frontend) |
-6. Click **Create Web Service**.
-7. Once deployed, note down your Backend URL (e.g., `https://aura-care-backend.onrender.com`).
-8. *(Optional)* Run Database Seed: Go to the **Shell** tab on Render and run `npm run db:init` if you want to re-seed demo accounts.
+### Frontend Service Settings (Render Static Site)
+- **Repository**: `geekykalpesh/hospital-management-system`
+- **Root Directory**: `frontend`
+- **Build Command**: `npm install && npm run build`
+- **Publish Directory**: `dist`
+- **Environment Variables**:
+  - `VITE_API_URL`: `https://hospital-management-system-uwn3.onrender.com/api`
+- **SPA Rewrites**:
+  - `/*` $\rightarrow$ `/index.html` (Status: `200`)
 
 ---
 
-### Step 3: Deploy the Frontend (Render Static Site)
+## 👨‍💻 Developer & Contact Details
 
-1. In the Render Dashboard, click **New +** and select **Static Site**.
-2. Connect the same repository: `geekykalpesh/hospital-management-system`.
-3. Configure the Static Site settings:
-   - **Name**: `aura-care-hospital` (or your preferred name)
-   - **Branch**: `main`
-   - **Root Directory**: `frontend` *(Important! Set this to `frontend`)*
-   - **Build Command**: `npm install && npm run build`
-   - **Publish Directory**: `dist`
-4. Click **Advanced** and add the following **Environment Variable**:
-   | Key | Value |
-   | :--- | :--- |
-   | `VITE_API_URL` | `https://aura-care-backend.onrender.com/api` *(Your Render backend URL followed by `/api`)* |
-5. **Crucial for Single Page Applications (React Router)**:
-   - In your Render Static Site settings, go to the **Redirects / Rewrites** tab.
-   - Click **Add Rule**:
-     - **Type**: `Rewrite`
-     - **Source**: `/*`
-     - **Destination**: `/index.html`
-     - **Action**: Save
-   *(This ensures refreshing `/patient/book` or `/doctor/appointments` doesn't return a 404 error).*
-6. Click **Create Static Site**.
-7. Once finished, update your Backend Web Service's `FRONTEND_URL` environment variable to match your new frontend Render URL.
-
----
-
-## 🔒 Security & Best Practices Implemented
-- Passwords salted and hashed with **bcrypt** (10 rounds).
-- Stateless JWT verification with automatic expiration and `/login` re-routing.
-- Role-based access control guards on both backend middleware and frontend React Router.
-- SQL injection prevention via parameterized queries.
-- `.env` files and credentials excluded from Git version control.
+- **Candidate**: Kalpesh Mahajan
+- **Email**: [geekykalpesh@gmail.com](mailto:geekykalpesh@gmail.com)
+- **GitHub**: [@geekykalpesh](https://github.com/geekykalpesh)
+- **Project Repository**: [hospital-management-system](https://github.com/geekykalpesh/hospital-management-system)
