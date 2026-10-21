@@ -1,7 +1,16 @@
 import axios from 'axios';
 
+// Get raw API base URL or default to localhost
+let rawBaseUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+
+// Normalize URL: Ensure trailing slashes are trimmed, and /api is properly appended if missing
+rawBaseUrl = rawBaseUrl.trim().replace(/\/+$/, '');
+if (!rawBaseUrl.endsWith('/api')) {
+  rawBaseUrl = `${rawBaseUrl}/api`;
+}
+
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || 'http://localhost:5000/api',
+  baseURL: rawBaseUrl,
   headers: {
     'Content-Type': 'application/json',
   },
@@ -24,7 +33,6 @@ api.interceptors.response.use(
   (response) => response,
   (error) => {
     if (error.response && error.response.status === 401) {
-      // Avoid infinite loop if already on login page
       if (!window.location.pathname.includes('/login')) {
         localStorage.removeItem('hms_token');
         localStorage.removeItem('hms_user');
