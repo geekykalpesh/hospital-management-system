@@ -16,6 +16,23 @@
 
 ---
 
+## 🗄️ Neon Cloud PostgreSQL Database Credentials
+
+Reviewers can connect directly via pgAdmin, DBeaver, or psql:
+
+| Parameter | Value |
+| :--- | :--- |
+| **Neon Console** | [https://console.neon.tech](https://console.neon.tech) |
+| **Database Host** | `ep-blue-moon-b5qxwgaf-pooler.c-7.us-east-2.aws.neon.tech` |
+| **Database Name** | `neondb` |
+| **Database User** | `neondb_owner` |
+| **Database Password** | `npg_0bkJoms4RIWY` |
+| **Port** | `5432` |
+| **SSL Mode** | `require` |
+| **Full Connection URI** | `postgresql://neondb_owner:npg_0bkJoms4RIWY@ep-blue-moon-b5qxwgaf-pooler.c-7.us-east-2.aws.neon.tech/neondb?sslmode=require` |
+
+---
+
 ## 🔑 Authentication & Live Demo Credentials
 
 Use the **1-click evaluation demo quick-fill switcher** on the [`/login`](https://hospital-management-system-1-g2e3.onrender.com/login) screen, or sign in manually using any of the verified credentials below:
